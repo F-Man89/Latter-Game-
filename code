@@ -1,0 +1,44 @@
+import random
+
+# List of words to choose from
+words = ["apple", "banana", "orange", "grape"]
+
+# Choose a random word
+word = random.choice(words)
+
+# Initialize the number of incorrect guesses
+incorrect_guesses = 0
+
+# Initialize the list of correct and incorrect letters
+correct_letters = []
+incorrect_letters = []
+
+while True:
+    # Print the current state of the game
+    print("Word: ", end="")
+    for letter in word:
+        if letter in correct_letters:
+            print(letter, end="")
+        else:
+            print("_", end="")
+    print()
+    print("Incorrect guesses: ", incorrect_guesses)
+
+    # Check if the game is over
+    if incorrect_guesses == 6:
+        print("You lost! The word was:", word)
+        break
+    if set(correct_letters) == set(word):
+        print("You won!")
+        break
+
+    # Get the next guess from the user
+    guess = input("Guess a letter: ")
+
+    # Check if the guess is correct or incorrect
+    if guess in word:
+        correct_letters.append(guess)
+    else:
+        incorrect_letters.append(guess)
+        incorrect_guesses += 1
+
